@@ -1,0 +1,133 @@
+:root {
+  --background-color: hsl(185, 36%, 44%);
+  --font-color: #000000;
+  --header-background-color: #4c5c68;
+  --header-font-color: #b0e4db;
+  --field-background-color: hsl(185, 98%, 40%);
+  --field-background-color-hover: hsl(185, 98%, 80%);
+  --blue-border-color: #2a3a46;
+  --button-background-color: hsl(325, 100%, 46%);
+  --button-hover-background: hsl(325, 100%, 66%);
+  --button-active-background: #2a3a46;
+  --font: 'Varela Round', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--font-color);
+  font-family: var(--font);
+  line-height: 1.6;
+  /* footer support */
+  margin-bottom: 80px;
+}
+
+h1 {
+  line-height: 1.2;
+}
+
+button {
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.header {
+  padding: 20px;
+  border-bottom: 3px solid var(--blue-border-color);
+  background-color: var(--header-background-color);
+  color: var(--header-font-color);
+}
+
+.title {
+  font-size: 100px;
+  text-align: center;
+}
+
+/* MAIN */
+
+main {
+  padding: 0 20px;
+}
+
+.message {
+  padding: 20px 0;
+  font-size: 50px;
+  text-align: center;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 450px;
+  height: 450px;
+  margin: 0px auto;
+}
+
+.field {
+  width: 150px;
+  height: 150px;
+  border: 3px solid black;
+  background-color: var(--field-background-color);
+  font-size: 100px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.field:hover {
+  background-color: var(--field-background-color-hover);
+}
+
+.field:nth-child(1), .field:nth-child(2), .field:nth-child(3) {
+  border-top: none;
+}
+
+.field:nth-child(1), .field:nth-child(4), .field:nth-child(7) {
+  border-left: none;
+}
+
+.field:nth-child(3), .field:nth-child(6), .field:nth-child(9) {
+  border-right: none;
+}
+
+.field:nth-child(7), .field:nth-child(8), .field:nth-child(9) {
+  border-bottom: none;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.restart-button {
+  padding: 10px 20px;
+  border-radius: 7px;
+  background: var(--button-background-color);
+  border-radius: 7px;
+  background-color: var(--button-background-color);
+  color: var(--header-font-color);
+  font-size: 50px;
+}
+
+.restart-button:hover {
+  background-color: var(--button-hover-background);
+}
+
+.restart-button:active {
+  background-color: var(--button-active-background);
+}
+
+
+
+
