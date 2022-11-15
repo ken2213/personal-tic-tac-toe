@@ -10,6 +10,8 @@ const Player = (sign) => {
   return { getSign };
 };
 
+
+
 const gameBoard = (() => {
   const board = ["", "", "", "", "", "", "", "", ""];
 
@@ -31,6 +33,8 @@ const gameBoard = (() => {
 
   return { setField, getField, reset };
 })();
+
+
 
 const displayController = (() => {
   const fieldElements = document.querySelectorAll(".field");
@@ -88,7 +92,23 @@ const displayController = (() => {
       setMessageElement("It's a draw!");
     } else {
       setMessageElement(`Player ${winner} has won!`);
+      start();
+      stop();
     }
+  };
+
+  // start confetti celebration
+  const start = () => {
+    setTimeout(function() {
+      confetti.start()
+    }, 500); // 1000 is time that after 1 second start the confetti ( 1000 = 1 sec)
+  };
+
+  //  Stop confetti celebration
+  const stop = () => {
+    setTimeout(function() {
+      confetti.stop()
+    }, 5000); // 5000 is time that after 5 second stop the confetti ( 5000 = 5 sec)
   };
 
   // Creates a message whether it's Player X or O turn
@@ -132,7 +152,6 @@ const gameController = (() => {
     return round % 2 === 1 ? playerX.getSign() : playerO.getSign();
   };
 
-
   const checkWinner = (fieldIndex) => {
     const winConditions = [
       [0, 1, 2],
@@ -166,5 +185,4 @@ const gameController = (() => {
 
   return { playRound, getIsOver, reset, getCurrentPlayerSign };
 })();
-
 
