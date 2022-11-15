@@ -34,24 +34,48 @@ const gameBoard = (() => {
 
 const displayController = (() => {
   const fieldElements = document.querySelectorAll(".field");
-  const messageElement = document.getElementById("message");
+  const messageElement = document.getElementById("messageElement");
   const restartButton = document.getElementById("restart-button");
 
   fieldElements.forEach((field) =>
-    field.addEventListener("click", (e) => {
-      if (gameController.getIsOver() || e.target.textContent !== "") return;
-      gameController.playRound(parseInt(e.target.dataset.index));
-      updateGameBoard();
-    })
+    // A field with Event Handler and within it, is another
+    // event handler that handles the restart button...
+
+    // I used this technique so that I can call the "field" parameter
+    // to help me remove the class when restart button is clicked...
+    field.addEventListener("click", (e) => 
+      {
+        if (gameController.getIsOver() || e.target.textContent !== "") return;
+        gameController.playRound(parseInt(e.target.dataset.index));
+        updateGameBoard();      
+        colorizeField(field);
+      },
+
+      restartButton.addEventListener("click", () => {
+          // Removes the class styling when restart button is clicked
+          field.classList.remove('player-x');
+          field.classList.remove('player-o');
+          // Resets the Game Board
+          gameBoard.reset();
+          gameController.reset();
+          updateGameBoard();
+          setMessageElement("Player X's turn");
+        }
+      )
+    )
   );
 
-  // Code the Restart Button below here!
-  restartButton.addEventListener("click", (e) => {
-    gameBoard.reset();
-    gameController.reset();
-    updateGameBoard();
-    setMessageElement("Player X's turn");
-  });
+  // Adds a styled "class" on selected field
+  const colorizeField = (field) => {
+    if (field.textContent == 'X') {
+      field.classList.toggle('player-x');
+    } else if (field.textContent == 'O') {
+      field.classList.toggle('player-o');
+    }
+    else {
+      return;
+    }
+  }
 
   const updateGameBoard = () => {
     for (let i = 0; i < fieldElements.length; i++) {
@@ -67,6 +91,7 @@ const displayController = (() => {
     }
   };
 
+  // Creates a message whether it's Player X or O turn
   const setMessageElement = (message) => {
     messageElement.textContent = message;
   };
@@ -84,9 +109,11 @@ const gameController = (() => {
 
   const playRound = (fieldIndex) => {
     gameBoard.setField(fieldIndex, getCurrentPlayerSign());
+
     if (checkWinner(fieldIndex)) {
       displayController.setResultMessage(getCurrentPlayerSign());
       isOver = true;
+
       return;
     }
     if (round === 9) {
@@ -94,6 +121,7 @@ const gameController = (() => {
       isOver = true;
       return;
     }
+
     round++;
     displayController.setMessageElement(
       `Player ${getCurrentPlayerSign()}'s turn`
@@ -103,6 +131,7 @@ const gameController = (() => {
   const getCurrentPlayerSign = () => {
     return round % 2 === 1 ? playerX.getSign() : playerO.getSign();
   };
+
 
   const checkWinner = (fieldIndex) => {
     const winConditions = [
@@ -132,8 +161,10 @@ const gameController = (() => {
   const reset = () => {
     round = 1;
     isOver = false;
+
   };
 
-  return { playRound, getIsOver, reset };
+  return { playRound, getIsOver, reset, getCurrentPlayerSign };
 })();
+
 

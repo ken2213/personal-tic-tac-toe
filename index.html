@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://kit.fontawesome.com/a40eeb584d.js" crossorigin="anonymous"></script>
   <script src="script.js" defer></script>
   <title>Tic Tac Toe</title>
 </head>
@@ -14,7 +15,7 @@
   </header>
   <main>
     <div class="message" id="message">
-      <h2>Player X's turn</h2>
+     <p id="messageElement">Player X's turn</p>
     </div>
     <div class="game-board">
       <div class="field" data-index="0"></div>
@@ -28,7 +29,9 @@
       <div class="field" data-index="8"></div>
     </div>
     <div class="button-container">
-      <button class="restart-button" id="restart-button">Restart</button>
+      <button class="restart-button" id="restart-button" title="Restart">
+        <i class="fa-solid fa-arrow-rotate-right"></i>
+      </button>
     </div>
   </main>
 </body>

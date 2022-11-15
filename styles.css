@@ -1,14 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Press+Start+2P&display=swap');
+
 :root {
-  --background-color: hsl(185, 36%, 44%);
+  --background-color: hsl(129, 45%, 69%);
   --font-color: #000000;
   --header-background-color: #4c5c68;
   --header-font-color: #b0e4db;
-  --field-background-color: hsl(185, 98%, 40%);
+  --field-background-color: #EDF3AD;
   --field-background-color-hover: hsl(185, 98%, 80%);
   --blue-border-color: #2a3a46;
-  --button-background-color: hsl(325, 100%, 46%);
-  --button-hover-background: hsl(325, 100%, 66%);
-  --button-active-background: #2a3a46;
+  --restart-btn-bg-color: hsl(348, 91%, 70%);
+  --restart-btn-hover-bg: hsl(348, 91%, 80%);
+  --restart-btn-active: hsl(348, 91%, 50%);
   --font: 'Varela Round', sans-serif;
 }
 
@@ -21,22 +23,14 @@
 body {
   background-color: var(--background-color);
   color: var(--font-color);
-  font-family: var(--font);
-  line-height: 1.6;
-  /* footer support */
+  font-family: 'Press Start 2P', cursive;
+  
+  /* line-height: 1.6; */
   margin-bottom: 80px;
-}
-
-h1 {
-  line-height: 1.2;
 }
 
 button {
   border: none;
-  color: inherit;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: pointer;
   outline: none;
 }
 
@@ -48,20 +42,33 @@ button {
 }
 
 .title {
-  font-size: 100px;
+  font-size: 70px;
   text-align: center;
+  line-height: 1.5;
 }
 
 /* MAIN */
 
 main {
+  display: flex;
+  flex-direction: column;
   padding: 0 20px;
 }
 
 .message {
-  padding: 20px 0;
-  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  width: auto;
+  font-size: 20px;
   text-align: center;
+}
+
+.message > p {
+  color: white;
+  background-color: hsl(187, 76%, 59%);
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 
 .game-board {
@@ -73,6 +80,9 @@ main {
 }
 
 .field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 150px;
   height: 150px;
   border: 3px solid black;
@@ -113,21 +123,47 @@ main {
 .restart-button {
   padding: 10px 20px;
   border-radius: 7px;
-  background: var(--button-background-color);
   border-radius: 7px;
-  background-color: var(--button-background-color);
-  color: var(--header-font-color);
+  background-color: var(--restart-btn-bg-color);
+  color: white;
   font-size: 50px;
 }
 
 .restart-button:hover {
-  background-color: var(--button-hover-background);
+  transform: scale(1.1);
+  background-color: var(--restart-btn-hover-bg);
 }
 
 .restart-button:active {
-  background-color: var(--button-active-background);
+  transform: scale(1);
+  background-color: var(--restart-btn-active);
+}
+
+.fa-arrow-rotate-right {
+  transition: transform 0.5s ease;
+}
+
+.fa-arrow-rotate-right:hover {
+  transform: rotate(360deg);
 }
 
 
+.player-x {
+  color: hsl(0, 100%, 60%);
+  background-color: hsl(0, 100%, 20%);
+}
 
+.player-x:hover {
+  color: hsl(0, 100%, 90%);
+  background-color: hsl(0, 100%, 50%);
+}
 
+.player-o {
+  color: hsl(240, 100%, 60%);
+  background-color: hsl(240, 100%, 20%);
+}
+
+.player-o:hover {
+  color: hsl(240, 100%, 90%);
+  background-color: hsl(240, 100%, 50%)
+}
